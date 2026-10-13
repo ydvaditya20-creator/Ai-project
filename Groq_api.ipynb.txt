@@ -1,0 +1,189 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "collapsed": true,
+        "id": "bZxfeyzb6_AN",
+        "outputId": "56243463-812b-4fd9-d533-3d57f4f8ef50"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Requirement already satisfied: groq in /usr/local/lib/python3.13/dist-packages (1.7.0)\n",
+            "Requirement already satisfied: anyio<5,>=3.5.0 in /usr/local/lib/python3.13/dist-packages (from groq) (4.15.1)\n",
+            "Requirement already satisfied: distro<2,>=1.7.0 in /usr/local/lib/python3.13/dist-packages (from groq) (1.9.0)\n",
+            "Requirement already satisfied: httpx<1,>=0.23.0 in /usr/local/lib/python3.13/dist-packages (from groq) (0.28.1)\n",
+            "Requirement already satisfied: pydantic<3,>=1.9.0 in /usr/local/lib/python3.13/dist-packages (from groq) (2.13.5)\n",
+            "Requirement already satisfied: sniffio in /usr/local/lib/python3.13/dist-packages (from groq) (1.3.1)\n",
+            "Requirement already satisfied: typing-extensions<5,>=4.14 in /usr/local/lib/python3.13/dist-packages (from groq) (4.16.0)\n",
+            "Requirement already satisfied: idna>=2.8 in /usr/local/lib/python3.13/dist-packages (from anyio<5,>=3.5.0->groq) (3.20)\n",
+            "Requirement already satisfied: certifi in /usr/local/lib/python3.13/dist-packages (from httpx<1,>=0.23.0->groq) (2026.7.22)\n",
+            "Requirement already satisfied: httpcore==1.* in /usr/local/lib/python3.13/dist-packages (from httpx<1,>=0.23.0->groq) (1.0.9)\n",
+            "Requirement already satisfied: h11>=0.16 in /usr/local/lib/python3.13/dist-packages (from httpcore==1.*->httpx<1,>=0.23.0->groq) (0.16.0)\n",
+            "Requirement already satisfied: annotated-types>=0.6.0 in /usr/local/lib/python3.13/dist-packages (from pydantic<3,>=1.9.0->groq) (0.8.0)\n",
+            "Requirement already satisfied: pydantic-core==2.46.5 in /usr/local/lib/python3.13/dist-packages (from pydantic<3,>=1.9.0->groq) (2.46.5)\n",
+            "Requirement already satisfied: typing-inspection>=0.4.2 in /usr/local/lib/python3.13/dist-packages (from pydantic<3,>=1.9.0->groq) (0.4.4)\n"
+          ]
+        }
+      ],
+      "source": [
+        "\n",
+        "pip install groq"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "\n",
+        "from groq import Groq\n",
+        "\n",
+        "# अपनी नई Groq API Key यहाँ डालें\n",
+        "API_KEY = \"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\"\n",
+        "\n",
+        "try:\n",
+        "    client = Groq(api_key=API_KEY)\n",
+        "\n",
+        "    response = client.chat.completions.create(\n",
+        "        model=\"openai/gpt-oss-20b\",\n",
+        "        messages=[\n",
+        "            {\n",
+        "                \"role\": \"user\",\n",
+        "                \"content\": \"user input aur niche table data show iarane ka Ek chota html code likho \"\n",
+        "            }\n",
+        "        ],\n",
+        "    )\n",
+        "\n",
+        "    print(\"\\nAI का जवाब:\")\n",
+        "    print(response.choices[0].message.content)\n",
+        "\n",
+        "except Exception as e:\n",
+        "    print(\"\\nError:\", e)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "yjkwaObVGwT-",
+        "outputId": "aa19ea7c-09f7-4cc3-c8c8-20bc63d11d17"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\n",
+            "AI का जवाब:\n",
+            "**उपयोगकर्ता इनपुट से तालिका बनाने का छोटा‑छोटा HTML उदाहरण**\n",
+            "\n",
+            "```html\n",
+            "<!DOCTYPE html>\n",
+            "<html lang=\"hi\">\n",
+            "<head>\n",
+            "<meta charset=\"UTF-8\">\n",
+            "<title>इनपुट – तालिका</title>\n",
+            "<style>\n",
+            "  body {font-family: Arial, sans-serif; padding: 20px;}\n",
+            "  table {border-collapse: collapse; width: 100%; margin-top: 15px;}\n",
+            "  th, td {border: 1px solid #aaa; padding: 8px; text-align: left;}\n",
+            "  th {background:#f0f0f0;}\n",
+            "</style>\n",
+            "</head>\n",
+            "<body>\n",
+            "\n",
+            "<h2>उपयोगकर्ता से डेटा लेकर तालिका बनाना</h2>\n",
+            "\n",
+            "<input type=\"text\" id=\"userInput\" placeholder=\"यहाँ मान लिखें\" style=\"width: 60%;\">\n",
+            "<button id=\"addBtn\">जोड़ें</button>\n",
+            "\n",
+            "<table id=\"dataTable\">\n",
+            "  <thead>\n",
+            "    <tr>\n",
+            "      <th>क्रम</th>\n",
+            "      <th>मान</th>\n",
+            "    </tr>\n",
+            "  </thead>\n",
+            "  <tbody>\n",
+            "    <!-- पंक्तियाँ यहाँ जोड़ी जाएँगी -->\n",
+            "  </tbody>\n",
+            "</table>\n",
+            "\n",
+            "<script>\n",
+            "  let rowCount = 0;                         // पंक्तियों की गिनती\n",
+            "\n",
+            "  document.getElementById('addBtn').addEventListener('click', () => {\n",
+            "    const input = document.getElementById('userInput');\n",
+            "    const val = input.value.trim();           // अनावश्यक स्पेस हटाएँ\n",
+            "\n",
+            "    if (!val) {\n",
+            "      alert('कृपया कुछ मान दर्ज करें');\n",
+            "      return;\n",
+            "    }\n",
+            "\n",
+            "    rowCount++;                               // नई पंक्ति के लिए क्रमांक\n",
+            "    const tbody = document.getElementById('dataTable').querySelector('tbody');\n",
+            "    const newRow = tbody.insertRow();         // नई पंक्ति जोड़ें\n",
+            "\n",
+            "    const cellNo = newRow.insertCell(0);      // क्रम संख्या\n",
+            "    const cellVal = newRow.insertCell(1);     // उपयोगकर्ता का मान\n",
+            "\n",
+            "    cellNo.textContent = rowCount;\n",
+            "    cellVal.textContent = val;\n",
+            "\n",
+            "    input.value = '';                         // इनपुट साफ़ करें\n",
+            "    input.focus();\n",
+            "  });\n",
+            "</script>\n",
+            "\n",
+            "</body>\n",
+            "</html>\n",
+            "```\n",
+            "\n",
+            "### यह क्या करता है?\n",
+            "\n",
+            "1. **इनपुट फ़ील्ड** – जहाँ आप कोई भी मान टाइप कर सकते हैं।  \n",
+            "2. **बटन** – `जोड़ें` पर क्लिक करने से JavaScript चलती है।  \n",
+            "3. **तालिका** – `<tbody>` के अंदर नई पंक्तियाँ जोड़ती है।  \n",
+            "4. **JS** –  \n",
+            "   - इनपुट का मान पढ़ता है।  \n",
+            "   - यदि खाली नहीं है तो पंक्ति संख्या बढ़ाता है और नई पंक्ति बनाता है।  \n",
+            "   - इनपुट फ़ील्ड को साफ़ करके फिर से फोकस देता है।  \n",
+            "\n",
+            "इस कोड को कॉपी करके किसी भी HTML फ़ाइल में पेस्ट करके चलाएँ, और आप देखेंगे कि हर बार जब आप `जोड़ें` पर क्लिक करेंगे तो नई पंक्ति तालिका में जुड़ जाएगी।\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "prq-hb2UIMI7"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
